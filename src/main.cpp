@@ -60,30 +60,30 @@ int main()
 	}
 	cout << "test end" << endl;
 
-	alg_init(pic_full);	alg_flush();
+	alg_init(pic_full);	alg_refresh();
 	while (alg_randSite() != 1)
 	{
 		sleep(1);
-		alg_flush();
+		alg_refresh();
 		while (1)
 		{
 			int dir = ts_GetDirection();
 			if (dir == RIGHT)
 			{
-				alg_slide(1, 0, 3, false);
-				alg_merge(1, 0, 3, false);
+				alg_slide(1, 0, 3, false); // 1 : 右滑，原矩阵	
+				alg_merge(1, 0, 3, false); 
 				break;
 			}
 			else if (dir == LEFT)
 			{
-				alg_slide(-1, 0, 3, false);
+				alg_slide(-1, 0, 3, false); // 2 : 左滑，原矩阵
 				alg_merge(-1, 0, 3, false);
 				
 				break;
 			}
 			else if (dir == UP)
 			{
-				alg_slide(-1, 0, 3, true);
+				alg_slide(-1, 0, 3, true); // 转置矩阵
 				alg_merge(-1, 0, 3, true);
 				break;
 			}
@@ -98,7 +98,7 @@ int main()
 				break;
 			}
 		}
-		alg_flush();
+		alg_refresh();
 	}
 	lcd_init(DIS_RED);
 	if (flag)

@@ -20,17 +20,17 @@ void BmpTransmit(const char* pathname, int dx, int dy)
 	int lineValidByte = 0;//一行有效数据的长度
 	int hunzi = 0;//一行数据的混子数
 	int lineByte = 0;//一行数据的总字节数
-	int totle = 0;//像素数组占多少个字节
+	int total = 0;//像素数组占多少个字节
 	lineValidByte = (depth / 8) * width;
 	if (lineValidByte % 4)
 	{
 		hunzi = 4 - (lineValidByte % 4);
 	}
 	lineByte = lineValidByte + hunzi;
-	totle = lineByte * high;
-	unsigned char* pPixelData = (unsigned char*)malloc(totle);
+	total = lineByte * high;
+	unsigned char* pPixelData = (unsigned char*)malloc(total);
 	lseek(fd1, 0x36, SEEK_SET);
-	read(fd1, pPixelData, totle);
+	read(fd1, pPixelData, total);
 	int x = 0, y = 0;
 	unsigned char ARGB_A = 0, ARGB_R = 0, ARGB_G = 0, ARGB_B = 0;
 	unsigned int ARGB = 0;

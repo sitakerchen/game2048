@@ -1,6 +1,6 @@
 #ifndef __TS_H__
 #define __TS_H__
-
+// touch screen
 #define UP		1
 #define DOWN	2
 #define LEFT	3

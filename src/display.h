@@ -11,6 +11,7 @@
 
 #define uint unsigned int
 
+// function below just used for test or display victory picture
 int dis_drawCircle(int x, int y, int, int);
 
 int dis_drawRectangle(int, int, int, uint);

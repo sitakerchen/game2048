@@ -85,14 +85,14 @@ int alg_randSite()
 		empty.erase(empty.begin() + next);
 
 		srand((unsigned)time(NULL));
-		game[ny][nx] = (rand() % 2 + 1) * 2;
+		game[ny][nx] = (rand() % 2 + 1) * 2; // generate 2 or 4 in empty position
 		cout << "rand : " << game[ny][nx] << endl;
 		remain--;
 	}
 	return 0;
 }
 
-int alg_flush()
+int alg_refresh()
 {
 	for (int y = 0 ; y < 4 ; ++ y)
 		for (int x = 0 ;x < 4 ; ++ x)
@@ -117,18 +117,18 @@ int alg_slide(int dir, int l, int r, bool rev) // -1 : to left, 1 : to right, cl
 		for (int x = l ; x <= r ; ++ x)
 		{
 			int next = x + dir;
-			next = max(0, next);
-			next = min(3, next);
+			next = max(0, next); // boundary
+			next = min(3, next); // boundary
 			if (rev)
 			{
-				if (game[next][y] == 0 and game[x][y] != 0)
+				if (game[next][y] == 0 and game[x][y] != 0) // if current pos isn't empty and  there is a space nearby
 				{
-					swap(game[x][y], game[next][y]);
+					swap(game[x][y], game[next][y]); // swap with neighbor
 
-					alg_slide(dir,x - 1 , x, rev);
+					alg_slide(dir,x - 1 , x, rev); // go ahead and check if it is still satisfy the condition
 				}
 			}
-			else 
+			else // the same with transpose matrix
 			{
 				if (game[y][next] == 0 and game[y][x] != 0) 
 				{
@@ -159,7 +159,7 @@ int alg_merge(int dir, int l, int r, bool rev)
 			next = min(3, next);
 			if (rev)
 			{
-				if (game[next][y] ==  game[x][y] and next != x)
+				if (game[next][y] ==  game[x][y] and next != x) // same value different pos
 				{
 					game[next][y] += game[x][y];
 					game[x][y] = 0;
