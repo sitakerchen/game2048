@@ -13,7 +13,7 @@ using namespace std;
 
 int alg_init(vector<string> );
 
-int alg_flush();
+int alg_refresh();
 
 int alg_randSite();
 
